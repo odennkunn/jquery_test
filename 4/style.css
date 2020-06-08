@@ -1,0 +1,68 @@
+@charset "utf-8";
+@import url("../common/css/reset.css");
+
+.btn {
+  margin: 50px;
+}
+
+.modal {
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modal__bg{
+  background: rgba(0,0,0,0.6);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.modal__content{
+  background: #fff;
+  position: absolute;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.head {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(#05FBFF, #1D62F0 );
+  border-radius: 5px 5px 0 0;
+}
+
+.middle {
+  background: red;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: block;
+  background: red;
+  opacity: 0.7;
+  font-weight: bold;
+  color: white;
+  border-radius: 3px;
+}
+
