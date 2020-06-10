@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>9</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <!-- 課題9 -->
+  <body>
+    <!-- 9-1 -->
+    <div class="form">
+      <p class="label">郵便番号</p>
+      <input type="text" id="zipcode">
+      <span id="message"></span>
+    </div>
+    <div class="form">
+      <p class="label">メールアドレス</p>
+      <input type="email" id="email">
+      <span id="message2"></span>
+    </div>
+    <input class="submit-color" data-disable-with="送信中..." id="submit" type="submit" value="入力チェック">
+    <hr>
+    <!-- 9-2 -->
+    <p class="label">オリジナル</p>
+    <input type="text" id="original">
+    <button id="change_01">↓置換↓</button>
+    <p class="label">置換後1</p>
+    <input type="text" id="after_01">
+    <button id="change_02">↓置換↓</button>
+    <p class="label">置換後2</p>
+    <input type="text" id="after_02">
+    <hr>
+    <!-- 9-3 -->
+    <div class="form">
+      <p class="label">yyyy年mm月dd日</p>
+      <input type="text" id="no-hyphen">
+    </div>
+
+    <div class="form">
+      <p class="label">yyyy/mm/dd</p>
+      <input type="text" id="hyphen">
+    </div>
+    <button id="date_change">日付の形式を置換</button>
+
+    <script src="../common/js/jquery-3.5.1.min.js"></script>
+    <script src="../common/js/index_09.js"></script>
+  </body>
+</html>
