@@ -1,0 +1,30 @@
+@charset "utf-8";
+@import url("../common/css/reset.css");
+
+.box {
+  width: 1000px;
+  background: linear-gradient(to bottom, red, #FFC778 20%, #99CC66 40%, #00CC99 60%, #748af8 80%, blue);
+  margin: 0 auto;
+  position: relative;
+}
+
+.num {
+  text-align: center;
+}
+
+.menu {
+  position: absolute;
+  top: 590px;
+  left: 0;
+  width: 240px;
+  border: solid 1px;
+  background: rgba(238, 238, 238, 0.5);
+}
+
+.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 220px;
+  z-index: 2;
+
+}
