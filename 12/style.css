@@ -1,0 +1,50 @@
+@charset "utf-8";
+@import url("../common/css/reset.css");
+
+.box {
+  width: 1000px;
+  background: linear-gradient(to bottom, red, #FFC778 20%, #99CC66 40%, #00CC99 60%, #748af8 80%, blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.num {
+  text-align: center;
+}
+
+.humburger {
+  width: 50px;
+  height: 50px;
+  border: solid 1px;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all .5s;
+}
+
+.hum_open {
+  transform: translate(240px);
+}
+
+.line {
+  background: black;
+  width: 36px;
+  height: 8px;
+  margin: 5px auto;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  border: solid 1px;
+  background: rgba(238, 238, 238, 0.5);
+  transform: translate(-240px);
+  transition: all .5s;
+}
+
+.menu_open {
+  transform: translate(0px);
+}

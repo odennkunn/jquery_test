@@ -4,7 +4,6 @@
 .box {
   width: 1000px;
   background: linear-gradient(to bottom, red, #FFC778 20%, #99CC66 40%, #00CC99 60%, #748af8 80%, blue);
-  margin: 0 auto;
   position: relative;
 }
 
@@ -24,7 +23,6 @@
 .is-fixed {
   position: fixed;
   top: 0;
-  left: 220px;
+  left: 0px;
   z-index: 2;
-
 }
