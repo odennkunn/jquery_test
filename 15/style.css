@@ -1,0 +1,64 @@
+@charset "utf-8";
+@import url("../common/css/reset.css");
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.spinner_area {
+  margin-top: 100px;
+  margin-left: 50px;
+  position: relative;
+  background: transparent;
+}
+
+.spinner_area input {
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 25px;
+  border: none;
+  background: transparent;
+}
+
+.btnarea {
+  margin-left: 115px;
+  margin-top: 30px;
+}
+
+.bg {
+  width: 30px;
+  height: 100px;
+  background: linear-gradient(to bottom,#FF6666,#FFF 20%,#FF6666 80%);
+}
+
+.gray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100px;
+  background: linear-gradient(to bottom,silver,#FFF 20%,silver 80%);
+  z-index: -1;
+}
+
+
+.btnarea input[type="button"]{
+  cursor: pointer;
+  border: none;
+  width: 60px;
+  height: 30px;
+  color: white;
+  border-radius: 5px;
+}
+
+#plus2 {
+  background: red;
+  margin-left: 30px;
+}
+
+#minus2 {
+  background: blue;
+}
