@@ -2,7 +2,12 @@
 @import url("../common/css/reset.css");
 
 .mapbox {
-  margin: 50px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.routebox {
+  margin: 20px 0 20px 50px;
 }
 
 #search {
@@ -16,4 +21,8 @@
 #target {
   width: 800px;
   height: 800px;
+}
+
+.lt {
+  margin-top: 30px;
 }

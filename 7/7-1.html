@@ -11,7 +11,19 @@
     <div class="mapbox">
       <input type="text" id="keyword"><button id="search">検索実行</button><button id="clear">結果クリア</button>
     </div>
+
+    <div class="routebox">
+      <span>始点</span><input type="text" id="begin">
+      <span>終点</span><input type="text" id="end">
+      <button id="route">検索</button>
+    </div>
+
     <div id="target"></div>
+    <div class="lt">
+      <span>緯度</span><input type="text" id="lat" value=""><br>
+      <span>経度</span><input type="text" id="lng" value=""><br>
+    </div>
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIUQJBSZGvWD5MlUlfVp1QGzvlU_h98fs"></script>
 

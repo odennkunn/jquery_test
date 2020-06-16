@@ -1,79 +1,126 @@
-function makeMap(lat, lng) {
-  var canvas = document.getElementById('target'); // 地図を表示する要素を取得
-
-  var latlng = new google.maps.LatLng(lat, lng);  // 中心の位置（緯度、経度）
-
-  var mapOptions = {
-      zoom: 17,
-      center: latlng,
-  };
-  var map = new google.maps.Map(canvas, mapOptions); //作成
-}
-
-//ページのロードが完了したら地図を読み込む
 window.onload = function(){
-    makeMap(35.6803997, 139.7690174);
+    initialize(35.6803997, 139.7690174);
 };
 
+var map;
+var maker;
+var infoWindow;
+var err = google.maps.DirectionsStatus;
+    function initialize(lat, lng) {
+
+      var mapOptions = {
+        center: new google.maps.LatLng(lat, lng),
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      map = new google.maps.Map(document.getElementById("target"),
+          mapOptions);
+
+      map.addListener('click', function(e) {
+        getClickLatLng(e.latLng, map);
+      });
+
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        polylineOptions: {
+        strokeColor: '#FF0000',
+        strokeWeight: 4,
+        strokeOpacity: 0.7
+        }
+      });
+      directionsRenderer.setMap(map);
+    }
+
+function search(){
+  var place = document.getElementById('keyword').value;
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({"address" : place}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+          var lat = results[0].geometry.location.lat();
+          var lng = results[0].geometry.location.lng();
+          var mark = {
+              lat: lat,
+              lng: lng
+          };
+          marker = new google.maps.Marker({
+          position: mark,
+          map: map
+          });
+          map.setCenter(results[0].geometry.location);
+          cnt =0;
+    }
+
+  });
+}
+
+function deleteMakers() {
+  if(marker != null){
+    marker.setMap(null);
+  }
+  marker = null;
+}
+
+$(function(){
+  $('#search').on('click',function(){
+    search();
+  });
+  $('#clear').on('click',function(){
+    deleteMakers();
+  });
+});
 
 
+function getClickLatLng(lat_lng, map) {
+  document.getElementById('lat').value=lat_lng.lat();
+  document.getElementById('lng').value=lat_lng.lng();
 
+  var keido = lat_lng.lat();
+  var ido = lat_lng.lng();
 
-//////////////////////////////////////////
-// var getMap = (function() {
-//   function codeAddress(address) {
-//     // google.maps.Geocoder()コンストラクタのインスタンスを生成
-//     var geocoder = new google.maps.Geocoder();
-//     //マーカー変数用意
-//     var marker;
-//     // geocoder.geocode()メソッドを実行
-//     geocoder.geocode( { 'address': address}, function(results, status) {
+  marker = new google.maps.Marker({
+    position: lat_lng,
+    map: map
+  });
+  // 座標の中心をずらす
+  map.panTo(lat_lng);
 
-//       // ジオコーディングが成功した場合
-//       if (status == google.maps.GeocoderStatus.OK) {
-//         // 変換した緯度・経度情報を地図の中心に表示
-//         map.setCenter(results[0].geometry.location);
+  infoWindow = new google.maps.InfoWindow({
+    content: '<div class="sample">経度</div>' + keido + '<div class="sample">緯度</div>' + ido,
+});
 
-//         //☆表示している地図上の緯度経度
-//         document.getElementById('lat').value=results[0].geometry.location.lat();
-//         document.getElementById('lng').value=results[0].geometry.location.lng();
+  marker.addListener('click', function() {
+    infoWindow.open(map, marker);
+  });
+}
 
-//         // マーカー設定
-//         marker = new google.maps.Marker({
-//           map: map,
-//           position: results[0].geometry.location
-//         });
+//検索開始
+function searchRoute() {
+  //textboxからの値を取得
+  var start = document.getElementById("begin").value;
+  var end = document.getElementById("end").value;
+  //検索設定
+  directions = new google.maps.DirectionsService();	//ルート生成
+  //ルートリクエスト
+  directions.route({
+    origin:start,		//開始地点
+    destination:end,	//終了地点
+    travelMode:google.maps.DirectionsTravelMode.DRIVING,	//ルートタイプ(車)
+    avoidHighways:true,		//高速道路(使わない)
+    avoidTolls:true,		//有料道路(使わない)
+    optimizeWaypoints: true,	//最適化された最短距離にする。
+  },
+  function(results, status) {	//ルート結果コールバック関数
+    if (status == err.OK) {	//検索結果がtrueの場合
+	directionsRenderer.setDirections(results);
+    } else {	//検索結果がfalseの場合
+	alert('エラー');
+    }
+    });
+}
 
-//       // ジオコーディングが成功しなかった場合
-//       } else {
-//         console.log('Geocode was not successful for the following reason: ' + status);
-//       }
-
-//     });
-
-//   }
-
-//   //inputのvalueで検索して地図を表示
-//   return {
-//     getAddress: function() {
-//       // ボタンに指定したid要素を取得
-//       var button = document.getElementById("map_button");
-//       // ボタンが押された時の処理
-//       button.onclick = function() {
-//         // フォームに入力された住所情報を取得
-//         var address = document.getElementById("address").value;
-//         // 取得した住所を引数に指定してcodeAddress()関数を実行
-//         codeAddress(address);
-//       }
-//       //読み込まれたときに地図を表示
-//       window.onload = function(){
-//         // フォームに入力された住所情報を取得
-//         var address = document.getElementById("address").value;
-//         // 取得した住所を引数に指定してcodeAddress()関数を実行
-//         codeAddress(address);
-//       }
-//     }
-//   };
-
-// })();
-// getMap.getAddress();
+$(function(){
+  $('#route').on('click',function(){
+    searchRoute();
+  });
+});
